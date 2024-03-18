@@ -1,0 +1,55 @@
+﻿@model Marmat.WebApp.Models.UsuarioViewModel
+
+@using Marmat.WebApp.ReCaptcha
+@using Microsoft.Extensions.Options
+@inject IOptions<GoogleCaptchaConfig> GoogleCaptchaConfig
+
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container-fluid">
+    @if (ViewBag.Message != null)
+    {
+        <br />
+        <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>Error!</strong> @ViewBag.Message
+        </div>
+        ViewBag.Mesage = null;
+    }
+    <h1 class="h1" style="text-align:center">Login</h1>
+
+    <hr />
+    <div class="container" style="display:flex; justify-content:center;">
+        <div class="col-md-4">
+            <form asp-action="LoginUsuario" class="cd-form">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" id="LoginViewModelToken" asp-for="token"/>
+                <div class="form-group">
+                    <input asp-for="NombreUsuario" class="form-control" placeholder="Usuario" required oninvalid="this.setCustomValidity('El usuario es requerido')" onchange="this.setCustomValidity('')" />
+                    <span asp-validation-for="NombreUsuario" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input asp-for="Pass" class="form-control" type="password" placeholder="Contraseña" required oninvalid="this.setCustomValidity('La contraseña es requerida')" onchange="this.setCustomValidity('')" />
+                    <span asp-validation-for="Pass" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Iniciar Sesión" class="full-width" />
+                </div>
+                <div class="form-group">
+                    <a asp-action="RegistrarNuevoUsuario">No tienes Cuenta?</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div style="text-align:center">
+        <button onclick="location.href='@Url.Action("index","Home")'" class="btn btn-default btn-lg rounded-lg"><i class="fa fa-user" aria-hidden="true"> Volver al menú</i></button>
+
+    </div>
+    <br />
+</div>
+@section Scripts{
+<script src="https://www.google.com/recaptcha/api.js?render=6Ldpr4IjAAAAAGkcsGhCZrp0OYvjMNKswiN7JCqf"></script>
+<script src="~/js/Captcha.js"></script>
+}

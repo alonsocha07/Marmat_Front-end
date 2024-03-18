@@ -1,0 +1,47 @@
+﻿@model Marmat.WebApp.Models.BoletinViewModel
+
+@{
+    ViewData["Title"] = "Registrar Boletin";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container-fluid">
+    @if (ViewBag.Message != null)
+    {
+        <br/>
+        <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>Error!</strong> @ViewBag.Message
+        </div>
+        ViewBag.Mesage = null;
+    }
+    <h1 class="h1">Registrar Boletin</h1>
+
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="RegistrarBoletin">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="form-group">
+                    <label asp-for="FechaInicio" class="control-label">Fecha Inicio</label>
+                    <input asp-for="FechaInicio" class="form-control" type="date" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
+                    <span asp-validation-for="FechaInicio" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="FechaFinal" class="control-label">Fecha Final</label>
+                    <input asp-for="FechaFinal" class="form-control" type="date" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
+                    <span asp-validation-for="FechaFinal" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Comentario" class="control-label">Comentario</label>
+                    <input asp-for="Comentario" class="form-control" required oninvalid="this.setCustomValidity('El comentario es requerido')" onchange="this.setCustomValidity('')"/>
+                    <span asp-validation-for="Comentario" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Registrar" class="btn btn-primary" />
+                    <a asp-action="MantenimientoBoletin">VOLVER A LA LISTA</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,94 @@
+﻿@model IEnumerable<Marmat.WebApp.Models.DepartamentoViewModel>
+
+@{
+    ViewData["Title"] = "Mantenimiento Departamento";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Styles{
+    <link href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" rel="stylesheet" />
+}
+<div class="container-fluid">
+    <h1 class="h1">Mantenimiento Departamento</h1>
+
+    <p>
+        <a asp-action="RegistrarDepartamento">Crear nuevo Departamento</a>
+    </p>
+    <table table id="TablaMantenimiento" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>
+                    ID
+                </th>
+                <th>
+                    Cantidad de Cuartos
+                </th>
+                <th>
+                    Cantidad de Baños
+                </th>
+                <th>
+                    Descripción
+                </th>
+                <th>
+                    Imagen
+                </th>
+                <th>
+                    Usuario
+                </th>
+                <th>
+                    Condominio
+                </th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdDepartamento)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CantidadCuartos)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CantidadBanios)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Descripcion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Imagen)
+                    </td>
+                    <td>
+                        @if (item.IdUsuario != null)
+                        {
+                            @Html.DisplayFor(modelItem => item.usuario.NombreUsuario)
+                        }
+                        else
+                        {
+                            @Html.DisplayFor(modelItem => item.IdUsuario)
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.condominio.NombreCondominio)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Editar", "ActualizarDepartamento", new {  id=item.IdDepartamento  })<br />
+                        @Html.ActionLink("Detalles", "ConsultarUnDepartamento", new {  id=item.IdDepartamento  })<br />
+                        @Html.ActionLink("Eliminar", "EliminarDepartamento", new {  id=item.IdDepartamento  })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <br />
+    <div class="row">
+        <div class="form-group text-center">
+            <button onclick="location.href='@Url.Action("Administrador","Administrador")'" class="btn btn-default btn-lg rounded-lg"><i class="fa fa-user" aria-hidden="true"> Volver al menú</i></button>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="~/js/DataTables/MantenimientoDataTable.js"></script>
+}

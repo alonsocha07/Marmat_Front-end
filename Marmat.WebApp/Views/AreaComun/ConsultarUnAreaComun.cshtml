@@ -1,0 +1,32 @@
+﻿@model Marmat.WebApp.Models.AreacomunViewModel
+
+@{
+    ViewData["Title"] = "Detalles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <h1 class="h1">Detalles</h1>
+
+    <div>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                ID
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.IdAreacomun)
+            </dd>
+            <dt class="col-sm-2">
+                Área Común
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.NombreAreacomun)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        @Html.ActionLink("EDITAR", "ActualizarAreaComun", new { id = Model.IdAreacomun }) |
+        <a asp-action="MantenimientoAreaComun">VOLVER A LA LISTA</a>
+    </div>
+</div>

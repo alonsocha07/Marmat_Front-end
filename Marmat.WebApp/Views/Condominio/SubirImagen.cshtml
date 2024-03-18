@@ -1,0 +1,59 @@
+﻿@model Marmat.WebApp.Models.CondominioViewModel
+
+
+<div style="margin-top:30px"> 
+<div class="container">
+        <div class="row">
+            
+                <div class="corousel-gallery-content">
+                    <div class="gallery">
+                        <div class="full-view owl-carousel">
+                            @for (var i = 1; i < ViewBag.CantImg + 1; i++)
+                            {
+                                string RutaImgCarousel = Url.Content("~/images/Condominio/Condominio" + ViewBag.IdCondominio + "/Ejemplo" + i + ".png");
+
+                                <a class="item image-pop-up" href=@RutaImgCarousel>
+                                    <img src=@RutaImgCarousel  style="width:400px;height:320px">
+                                </a>
+
+                            }
+                        </div>
+
+                        <div class="list-view owl-carousel">
+                            @for (var i = 1; i < ViewBag.CantImg + 1; i++)
+                            {
+
+                                string RutaImgCarousel = Url.Content("~/images/Condominio/Condominio" + ViewBag.IdCondominio + "/Ejemplo" + i + ".png");
+
+                                <div class="item" style="width:-50px">
+                                    <img src="@RutaImgCarousel" alt="corousel-image" style="width:150px;height:120px">
+                                </div>
+
+                            }
+
+                        </div>
+                    </div> <!-- /.gallery-two -->
+                </div> <!-- /.corousel-gallery-content -->
+
+                <form asp-action="SubirImagen"  enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                 <input asp-for="IdCondominio" hidden="hidden" value=@ViewBag.IdCondominio name="id" />
+               <div class="form-group">
+                      <label asp-for="Img" class="control-label">Imagenes (En formato .png)</label>
+                      <div class="custom-file">
+                          <input asp-for="Img" class="custom-file-input" name="upload">
+                         
+                      </div>
+                      <span asp-validation-for="Img" class="text-danger"></span>
+                  </div>
+
+                  <div class="form-group">
+                    <input type="submit" value="Subir" class="btn btn-primary" />
+                  
+                </div>
+
+                 </form>
+        </div> <!-- /.row -->
+    </div> <!-- /.container -->
+</div>

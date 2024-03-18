@@ -1,0 +1,58 @@
+﻿@model Marmat.WebApp.Models.CondominioViewModel
+
+@{
+    ViewData["Title"] = "Eliminar Condominio";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container-fluid">
+    <h1 class="h1">Eliminar Condominio</h1>
+
+    <h3 class="h3">¿Está seguro de eliminar esto?</h3>
+    <div>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                ID
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.IdCondominio)
+            </dd>
+            <dt class="col-sm-2">
+                Nombre
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.NombreCondominio)
+            </dd>
+            <dt class="col-sm-2">
+                Vacantes
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Vacantes)
+            </dd>
+            <dt class="col-sm-2">
+                Descripción
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Descripcion)
+            </dd>
+            <dt class="col-sm-2">
+                Link Google Maps
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Imagen)
+            </dd>
+            <dt class="col-sm-2">
+                Dirección
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.direccion.NombreDireccion)
+            </dd>
+        </dl>
+
+        <form asp-action="EliminarCondominio">
+            @Html.HiddenFor(Model=>Model.IdCondominio)
+            <input type="submit" value="Eliminar" class="btn btn-danger" />
+            <a asp-action="MantenimientoCondominio">VOLVER A LA LISTA</a>
+        </form>
+    </div>
+</div>

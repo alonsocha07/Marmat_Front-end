@@ -1,0 +1,90 @@
+﻿@model Marmat.WebApp.Models.UsuarioViewModel
+
+@{
+    ViewData["Title"] = "RegistrarNuevoUsuario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container-fluid">
+    @if (ViewBag.Message != null)
+    {
+        <br />
+        <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>Error!</strong> @ViewBag.Message
+        </div>
+        ViewBag.Mesage = null;
+    }
+    <h1 style="text-align:center">Crear Cuenta Nueva</h1>
+
+    <hr />
+    <div class="container" style="display:flex; justify-content:center;">
+        <div class="col-md-4" >
+            <form asp-action="RegistrarNuevoUsuario" class="cd-form">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                 <input type="hidden" id="LoginViewModelToken" asp-for="token"/>
+                <div class="form-group">
+                    <p class="fieldset">
+                        <label asp-for="NombreUsuario" class="image-replace cd-username" for="signup-username">Usuario</label>
+                        <input asp-for="NombreUsuario" class="form-control" id="signup-username" type="text" placeholder="Usuario" required oninvalid="this.setCustomValidity('El usuario es requerido')" onchange="this.setCustomValidity('')"/>
+                        <span asp-validation-for="NombreUsuario" class="text-danger"></span>
+                    </p>
+                </div>
+                <div class="form-group">
+                    <p class="fieldset">
+                        <label asp-for="Correo" class="image-replace cd-Correo"></label>
+                        <input asp-for="Correo" class="form-control" type="text" placeholder="Correo" required oninvalid="this.setCustomValidity('El correo es requerido')" onchange="this.setCustomValidity('')" />
+                        <span asp-validation-for="Correo" class="text-danger"></span>
+                    </p>
+                </div>
+                <div class="form-group">
+                    <p class="fieldset">
+                        <label asp-for="Pass" class="image-replace cd-Pass"></label>
+                        <input asp-for="Pass" class="form-control"
+                         type="text" placeholder="Contraseña" required pattern="[A-Za-z0-9]{8,16}"
+                         title="Debe contener Mayusculas, minusculas y numeros" />
+                        <span asp-validation-for="Pass" class="text-danger" ></span>
+                    </p>
+                </div>
+                <div class="form-group">
+                    <p class="fieldset">
+                        <label asp-for="Nombre" class="image-replace cd-Nombre"></label>
+                        <input asp-for="Nombre" class="form-control" type="text" placeholder="Nombre" required oninvalid="this.setCustomValidity('El nombre es requerido')" onchange="this.setCustomValidity('')" />
+                        <span asp-validation-for="Nombre" class="text-danger"></span>
+                    </p>
+                </div>
+                <div class="form-group">
+                    <p class="fieldset">
+                        <label asp-for="PrimerApellido" class="image-replace cd-PrimerApellido"></label>
+                        <input asp-for="PrimerApellido" class="form-control" type="text" placeholder="Primer Apellido" required oninvalid="this.setCustomValidity('El primer apellido es requerido')" onchange="this.setCustomValidity('')" />
+                        <span asp-validation-for="PrimerApellido" class="text-danger"></span>
+                    </p>
+                </div>
+                <div class="form-group">
+                    <p class="fieldset">
+                        <label asp-for="SegundoApellido" class="image-replace cd-SegundoApellido"></label>
+                        <input asp-for="SegundoApellido" class="form-control" type="text" placeholder="Segundo Apellido" required oninvalid="this.setCustomValidity('El segundo apellido es requerido')" onchange="this.setCustomValidity('')" />
+                        <span asp-validation-for="SegundoApellido" class="text-danger"></span>
+                    </p>
+                </div>
+                <div class="form-group">
+                    <p class="fieldset">
+                        <label asp-for="NumeroTel" class="image-replace cd-NumeroTel"></label>
+                        <input asp-for="NumeroTel" class="form-control" type="text" placeholder="Telefono" required oninvalid="this.setCustomValidity('El teléfono es requerido')" onchange="this.setCustomValidity('')"/>
+                        <span asp-validation-for="NumeroTel" class="text-danger"></span>
+                    </p>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="full-width has-padding" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div style="text-align:center">
+        <a asp-action="LoginUsuario">Volver al login</a>
+    </div>
+</div>
+@section Scripts{
+<script src="https://www.google.com/recaptcha/api.js?render=6Ldpr4IjAAAAAGkcsGhCZrp0OYvjMNKswiN7JCqf"></script>
+<script src="~/js/Captcha.js"></script>
+}

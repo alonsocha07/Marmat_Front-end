@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Marmat.DML.ReservaViewModel>
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor Accessor
+@{
+    ViewData["Title"] = "Mantenimiento Reserva";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Styles{
+    <link href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" rel="stylesheet" />
+}
+<div class="container-fluid">
+    <h1 class="h1">Mantenimiento Reserva</h1>
+
+    <p>
+        <a asp-action="RegistrarReserva">Crear nueva Reserva</a>
+    </p>
+    <table table id="TablaMantenimiento" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>
+                    ID
+                </th>
+                <th>
+                    Fecha
+                </th>   
+                <th>
+                    Área Común
+                </th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdReserva)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FechaReserva)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.areacomun.NombreAreacomun)
+                    </td>
+                    @if (Accessor.HttpContext.Session.GetInt32("Rol") == 1)
+                    {
+                        <td>
+                            @Html.ActionLink("Editar", "ActualizarReserva", new { id=item.IdReserva })<br />
+                            @Html.ActionLink("Detalle", "ConsultarUnaReserva", new { id=item.IdReserva })<br />
+                            @Html.ActionLink("Eliminar", "EliminarReserva", new { id=item.IdReserva })
+                        </td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+    <br />
+    <div class="row">
+        <div class="form-group text-center">
+            <button onclick="location.href='@Url.Action("Administrador","Administrador")'" class="btn btn-default btn-lg rounded-lg"><i class="fa fa-user" aria-hidden="true"> Volver al menú</i></button>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="~/js/DataTables/MantenimientoDataTable.js"></script>
+}

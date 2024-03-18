@@ -1,0 +1,39 @@
+﻿@model Marmat.WebApp.Models.BitacoraViewModel
+
+@{
+    ViewData["Title"] = "Registrar Bitacora";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container-fluid">
+    <h1 class="h1">Registrar Bitacora</h1>
+
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="RegistrarBitacora">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="form-group">
+                    <label asp-for="DESCRIPCION" class="control-label">Descripción</label>
+                    <input asp-for="DESCRIPCION" class="form-control" required oninvalid="this.setCustomValidity('La descripción es requerida')" onchange="this.setCustomValidity('')" />
+                    <span asp-validation-for="DESCRIPCION" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="FECHA" class="control-label">Fecha</label>
+                    <input asp-for="FECHA" class="form-control" type="date" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
+                    <span asp-validation-for="FECHA" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ID_USUARIO" class="control-label">Usuario</label>
+                    @Html.DropDownListFor(model => model.ID_USUARIO, new SelectList(Model.usuarios, "IdUsuario", "NombreUsuario"), "--Seleccionar--", new{@class="form-control"})
+                    <span asp-validation-for="ID_USUARIO" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Registrar" class="btn btn-primary" />
+                    <a asp-action="MantenimientoBitacora">VOLVER A LA LISTA</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

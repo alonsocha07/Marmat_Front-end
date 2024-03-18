@@ -1,0 +1,40 @@
+﻿@model Marmat.WebApp.Models.DireccionViewModel
+
+@{
+    ViewData["Title"] = "Eliminar Direccion";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container-fluid">
+    <h1 class="h1">Eliminar Direccion</h1>
+
+    <h3 class="h3">¿Está seguro de eliminar esto?</h3>
+    <div>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                ID
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.IdDireccion)
+            </dd>
+            <dt class="col-sm-2">
+                Nombre
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.NombreDireccion)
+            </dd>
+            <dt class="col-sm-2">
+                Distrito
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.distrito.NombreDistrito)
+            </dd>
+        </dl>
+
+        <form asp-action="EliminarDireccion">
+            @Html.HiddenFor(Model=>Model.IdDireccion)
+            <input type="submit" value="Eliminar" class="btn btn-danger" />
+            <a asp-action="MantenimientoDireccion">VOLVER A LA LISTA</a>
+        </form>
+    </div>
+</div>

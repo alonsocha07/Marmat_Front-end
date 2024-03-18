@@ -1,0 +1,43 @@
+﻿@model Marmat.WebApp.Models.BitacoraViewModel
+
+@{
+    ViewData["Title"] = "Detalles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container-fluid">
+    <h1 class="h1">Detalles</h1>
+
+    <div>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                ID
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ID_BITACORA)
+            </dd>
+            <dt class="col-sm-2">
+                Descripción
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.DESCRIPCION)
+            </dd>
+            <dt class="col-sm-2">
+                Fecha
+            </dt>
+            <dd class="col-sm-10">
+                @Model.FECHA.ToString("MM/dd/yyyy")
+            </dd>
+            <dt class="col-sm-2">
+                Usuario
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.usuario.NombreUsuario)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        @Html.ActionLink("EDITAR", "ActualizarBitacora", new {  id = Model.ID_BITACORA, @class="btn btn-primary" }) |
+        <a asp-action="MantenimientoBitacora">VOLVER A LA LISTA</a>
+    </div>
+</div>

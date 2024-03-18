@@ -1,0 +1,88 @@
+﻿@model IEnumerable<Marmat.WebApp.Models.CondominioViewModel>
+
+@{
+    ViewData["Title"] = "Mantenimiento Condominio";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Styles{
+    <link href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" rel="stylesheet" />
+}
+<div class="container-fluid">
+    <h1 class="h1">Mantenimiento Condominio</h1>
+
+    <p>
+        <a asp-action="RegistrarCondominio">Crear nuevo Condominio</a>
+    </p>
+    <table table id="TablaMantenimiento" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>
+                    ID
+                </th>
+                <th>
+                    Nombre
+                </th>
+                <th>
+                    Vacantes
+                </th>
+                <th>
+                    Descripcion
+                </th>
+                <th>
+                    Imagen
+                </th>
+                <th>
+                    Dirección
+                </th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                string IdImagen = Url.Content("~/images/Condominio/Condominio" + item.IdCondominio.ToString() + "/Ejemplo1.png");
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdCondominio)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NombreCondominio)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Vacantes)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Descripcion)
+                    </td>
+                    <td>
+                        <a>
+                            <img style="width:230px;height:170px" src=@IdImagen>
+
+                        </a>
+                        <button type="button" onclick="location.href='@Url.Action("SubirImagen","Condominio",new {  id=item.IdCondominio  })'" class="btn btn-primary btn-block">Subir</button>
+                        <button type="button" onclick="location.href='@Url.Action("EliminarImagen","Condominio",new {  id=item.IdCondominio  })'" class="btn btn-danger btn-block">Eliminar</button>
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.direccion.NombreDireccion)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Editar", "ActualizarCondominio", new {  id=item.IdCondominio  })<br />
+                        @Html.ActionLink("Detalles", "ConsultarUnCondominio", new {  id=item.IdCondominio  })<br />
+                        @Html.ActionLink("Eliminar", "EliminarCondominio", new {  id=item.IdCondominio  })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <br />
+    <div class="row">
+        <div class="form-group text-center">
+            <button onclick="location.href='@Url.Action("Administrador","Administrador")'" class="btn btn-default btn-lg rounded-lg"><i class="fa fa-user" aria-hidden="true"> Volver al menú</i></button>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="~/js/DataTables/MantenimientoDataTable.js"></script>
+}

@@ -1,0 +1,262 @@
+﻿@model Marmat.WebApp.Models.CatalogoViewModel
+
+@{
+    ViewData["Title"] = "CondominioEspecifico";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+
+<div class="page-header default-template-gradient">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="page-title">Condominio</h2>
+                <p class="page-description">@Html.DisplayFor(model => model.NombreCondominio)</p>
+            </div><!-- /.col-md-12 -->
+        </div><!-- /.row-->
+    </div><!-- /.container-fluid -->
+</div><!-- /.page-header -->
+<!-- ====== Apartments-Single-Area ======= -->
+<div class="apartment-single-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="corousel-gallery-content">
+                    <div class="gallery">
+                        <div class="full-view owl-carousel">
+                            @for (var i = 1; i < ViewBag.CantImg + 1; i++)
+                            {
+                                string RutaImgCarousel = Url.Content("~/images/Condominio/Condominio" + Model.IdCondominio.ToString() + "/Ejemplo" + i + ".png");
+
+                                <a class="item image-pop-up" href=@RutaImgCarousel>
+                                    <img src=@RutaImgCarousel>
+                                </a>
+
+                            }
+                        </div>
+
+                        <div class="list-view owl-carousel">
+                            @for (var i = 1; i < ViewBag.CantImg + 1; i++)
+                            {
+
+                                string RutaImgCarousel = Url.Content("~/images/Condominio/Condominio" + Model.IdCondominio.ToString() + "/Ejemplo" + i + ".png");
+
+                                <div class="item">
+                                    <img src="@RutaImgCarousel" alt="corousel-image">
+                                </div>
+
+
+
+                            }
+
+                        </div>
+                    </div> <!-- /.gallery-two -->
+                </div> <!-- /.corousel-gallery-content -->
+
+
+                <div class="family-apartment-content mobile-extend">
+                    <div class="tb">
+                        <div class="tb-cell">
+
+
+                            <strong>@Html.DisplayFor(model => model.NombreCondominio)</strong>
+                        </div><!-- /.tb-cell -->
+                       
+                    </div><!-- /.tb -->
+                    <div class="clearfix"></div><!-- /.clearfix -->
+                    @Html.DisplayFor(model => model.Descripcion )
+
+
+
+
+
+
+                </div><!-- /.family-apartment-content -->
+                <div class="hidden-md hidden-lg text-center extend-btn">
+                    <span class="extend-icon">
+                        <i class="fa fa-angle-down"></i>
+                    </span>
+                </div>
+            </div> <!-- /.col-md-8 -->
+
+            <div class="col-md-4">
+                <div class="apartment-sidebar">
+                    <div class="widget_rental_search clerafix">
+                        <div class="form-border gradient-border">
+
+                            <div class="form-bg seven">
+                                <div class="form-content">
+
+                                    <form asp-controller="Catalogo" asp-action="MandarCorreo" class="advance_search_query booking-form">
+                                        <!--class="advance_search_query booking-form", Poner para que se vea bonito-->
+
+
+
+                                        <div class="form-group">
+
+                                            <label>Nombre</label>
+
+                                            <input asp-for="nombre" class="form-control" />
+
+
+                                        </div><!-- /.form-group -->
+                                        <div class="form-group">
+                                            <label>Apellidos</label>
+
+                                            <input asp-for="apellidos" class="form-control" />
+
+                                        </div><!-- /.form-group -->
+
+                                        <div class="form-group">
+                                            <label>Telefono</label>
+
+                                            <input asp-for="numero" class="form-control" />
+
+                                        </div><!-- /.form-group -->
+
+
+                                        <div class="form-group">
+                                            <label>Correo electrónico</label>
+
+                                            <input asp-for="correo" class="form-control" />
+
+                                        </div><!-- /.form-group -->
+
+                                        <div class="form-group">
+                                            <label>Mensaje</label>
+                                             <textarea asp-for="mensaje" class="form-control" > </textarea>
+                                           
+
+                                        </div><!-- /.form-group -->
+                                        <div class="form-group" style="text-align:center">
+                                            <button type="submit" class="btn btn-warning" style="width: 170px;height: 65px; font-size: 24px; border-radius: 8px;">Contactar </button>
+                                        </div><!-- /.form-group -->
+
+
+                                         @Html.HiddenFor(m => @Model.NombreCondominio)
+                                    </form>
+
+                                </div><!-- /.form-content -->
+                            </div><!-- /.form-bg -->
+
+                        </div><!-- /.form-border -->
+                    </div><!-- /.widget_rental_search -->
+
+
+                </div><!-- /.apartment-sidebar -->
+            </div> <!-- .col-md-4 -->
+        </div> <!-- /.row -->
+    </div> <!-- /.container -->
+</div> <!-- /.appartment-single-area -->
+
+<div class="map-area">
+    <div class="container">
+        <div class="row">
+            <div class="heading-content-one">
+                <h5>Tipos de apartamentos</h5>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br />
+
+        <div style="margin-inline: 10% 10%">
+        <table table id="TablaMantenimiento" class="table table-striped" style="width:100%">
+            <thead>
+                <tr>
+
+                    <th>
+                        <i class="fa fa-bed"></i>  Cuartos
+                    </th>
+                    <th>
+                        <i class="fa fa-bath"></i>  Baños
+                    </th>
+                    <th>
+                        Descripción
+                    </th>
+
+                </tr>
+            </thead>
+            <tbody>
+
+               
+                   
+
+                @{
+   
+
+                    foreach (var item in ViewBag.ListaDep)
+                    {
+                        <tr>
+
+                            <td>
+                                @item.CantidadCuartos
+                            </td>
+                            <td>
+                                @item.CantidadBanios
+                            </td>
+                            <td>
+                                @item.Descripcion
+                            </td>
+
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+   
+
+
+    
+
+    
+    
+
+<!-- ====== Map Area====== -->
+<div class="map-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="heading-content-one">
+                    <h5>Encuéntranos</h5>
+                    <h2 class="title default-text-gradient">Ubicación en Google Maps</h2>
+                    <p>Descubra cómo encontrarnos desde su ubicación actual</p>
+                </div><!-- /.about-heading-content -->
+                <div class="map-content">
+                    <iframe height="550" src=@Model.Imagen allowfullscreen="allowfullscreen"></iframe>
+                </div><!-- /.map-content -->
+            </div><!-- /.col-md-12 -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</div><!-- /.map-content-area -->
+
+<br />
+<!-- ====== Call To Action ======== -->
+<div class="call-to-action default-template-gradient">
+    <div class="container">
+        <div class="row tb">
+            <div class="col-md-6 col-sm-6 tb-cell">
+                <div class="contact-left-content">
+                    <h3>¿Tienes algún condominio?</h3>
+                    <h4>Ponte en contacto para unirte a la asociación</h4>
+                </div><!-- /.contact-left-content -->
+            </div><!-- /.col-md-6 -->
+            <div class="col-md-6 col-sm-6 tb-cell">
+                <div class="contact-right-content">
+                    <h4><a href="#">+880123654987<span>MarmarEjemplo@gmail.com</span></a></h4>
+
+                </div><!-- /.contact-right-content -->
+            </div><!-- /.col-md-6 -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</div><!-- /.call-to-action -->
+
+
+<script src="~/js/vendor/jquery-1.12.4.min.js"></script>
+<script src="~/js/plugins.js"></script>
+<script src="~/js/main.js"></script>
+
+

@@ -1,0 +1,101 @@
+﻿@{
+    ViewBag.Title = "Administrador";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid" style="padding-top:50px;padding-bottom:50px;">
+    <h2 class="h2 text-center">Vista Administrador</h2>
+    <h3 class="h3">Herramientas administrativas</h3>
+    <div class="row">
+
+        <div class="col-md-6">
+            <button onclick="location.href='@Url.Action("Index","Dashboard")'" class="btn btn-default btn-lg btn-block rounded-lg"><i class="fa fa-file" aria-hidden="true"> Acceder a Reportes</i></button>
+            <br />
+        </div>
+        <div class="col-md-6">
+            <button onclick="location.href='@Url.Action("RegistrarBoletin","Boletin")'" class="btn btn-default btn-lg btn-block"><i class="fa fa-info-circle" aria-hidden="true"> Publicar Boletín Informativo</i></button>
+            <br />
+        </div>
+    </div>
+    <h3 class="h3">Mantenimientos</h3>
+    <div class="row">
+        <div class="col-md-3">
+            <button onclick="location.href='@Url.Action("MantenimientoAviso","Aviso")'" class="btn btn-primary btn-lg btn-block"><i class="fa fa-file" aria-hidden="true"> Aviso</i></button>
+            <br />
+        </div>
+        <div class="col-md-3">
+            <button onclick="location.href='@Url.Action("MantenimientoBitacora","Bitacora")'" class="btn btn-primary btn-lg btn-block"><i class="fa fa-file-text-o" aria-hidden="true"> Bitácora</i></button>
+            <br />
+        </div>
+        <div class="col-md-3">
+            <button onclick="location.href='@Url.Action("MantenimientoBoletin","Boletin")'" class="btn btn-primary btn-lg btn-block"><i class="fa fa-info-circle" aria-hidden="true"> Boletin</i></button>
+            <br />
+        </div>
+        <!--
+        <div class="col-md-2">
+            <button onclick="location.href='@Url.Action("MantenimientoCanton","Canton")'" class="btn btn-primary btn-lg btn-block"><i class="fa fa-globe" aria-hidden="true"> Cantón</i></button>
+            <br />
+        </div>
+        
+        <div class="col-md-2">
+            <button onclick="location.href='@Url.Action("MantenimientoComentarioTicket","ComentarioTicket")'" class="btn btn-primary btn-lg btn-block"><i class="fa fa-comment" aria-hidden="true"> ComentarioTicket</i></button>
+            <br />
+        </div>
+        -->
+        <div class="col-md-3">
+            <button onclick="location.href='@Url.Action("MantenimientoCondominio","Condominio")'" class="btn btn-primary btn-lg btn-block"><i class="fa fa-building" aria-hidden="true"> Condominio</i></button>
+            <br />
+        </div>
+        
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <button onclick="location.href='@Url.Action("MantenimientoDepartamento","Departamento")'" class="btn btn-primary btn-lg btn-block"><i class="fa fa-building-o" aria-hidden="true"> Departamento</i></button>
+            <br />
+        </div>
+        <div class="col-md-3">
+            <button onclick="location.href='@Url.Action("MantenimientoDireccion","Direccion")'" class="btn btn-primary btn-lg btn-block"><i class="fa fa-address-card" aria-hidden="true"> Direccion</i></button>
+            <br />
+        </div>
+        <div class="col-md-3">
+            <button onclick="location.href='@Url.Action("MantenimientoDistrito","Distrito")'" class="btn btn-primary btn-lg btn-block"><i class="fa fa-globe" aria-hidden="true"> Distrito</i></button>
+            <br />
+        </div>
+        <!--
+        <div class="col-md-3">
+            <button onclick="location.href='@Url.Action("MantenimientoEstado","Estado")'" class="btn btn-primary btn-lg btn-block"><i class="fa fa-file" aria-hidden="true"> Estado</i></button>
+            <br />
+        </div>
+        
+        <div class="col-md-2">
+            <button onclick="location.href='@Url.Action("MantenimientoProvincia","Provincia")'" class="btn btn-primary btn-lg btn-block"><i class="fa fa-globe" aria-hidden="true"> Provincia</i></button>
+            <br />
+        </div>
+        -->
+        <div class="col-md-3">
+            <button onclick="location.href='@Url.Action("MantenimientoRol","Rol")'" class="btn btn-primary btn-lg btn-block"><i class="fa fa-users" aria-hidden="true"> Rol</i></button>
+            <br />
+        </div>
+    </div>
+    <div class="row">
+        
+         <div class="col-md-3">
+            <button onclick="location.href='@Url.Action("MantenimientoUsuario","Usuario")'" class="btn btn-primary btn-lg btn-block"><i class="fa fa-user" aria-hidden="true"> Usuario</i></button>
+            <br />
+        </div>
+        <div class="col-md-3">
+            <button onclick="location.href='@Url.Action("MantenimientoAreaComun","AreaComun")'" class="btn btn-primary btn-lg btn-block"><i class="fa fa-user" aria-hidden="true"> Área Común</i></button>
+            <br />
+        </div>
+        <div class="col-md-3">
+            <button onclick="location.href='@Url.Action("MantenimientoReserva","Reserva")'" class="btn btn-primary btn-lg btn-block"><i class="fa fa-user" aria-hidden="true"> Reservas</i></button>
+            <br />
+        </div>
+        <!--
+        <div class="col-md-2">
+            <button onclick="location.href='@Url.Action("MantenimientoTicket","Ticket")'" class="btn btn-primary btn-lg btn-block"><i class="fa fa-inbox" aria-hidden="true"> Ticket</i></button>
+            <br />
+        </div>
+        -->
+    </div>
+</div>

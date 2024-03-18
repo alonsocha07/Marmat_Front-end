@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Marmat.WebApp.Models.DireccionViewModel>
+
+@{
+    ViewData["Title"] = "Mantenimiento Dirección";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Styles{
+    <link href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" rel="stylesheet" />
+}
+<div class="container-fluid">
+    <h1 class="h1">Mantenimiento Dirección</h1>
+
+    <p>
+        <a asp-action="RegistrarDireccion">Crear nueva Dirección</a>
+    </p>
+    <table table id="TablaMantenimiento" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>
+                    ID
+                </th>
+                <th>
+                    Nombre
+                </th>
+                <th>
+                    Distrito
+                </th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdDireccion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NombreDireccion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.distrito.NombreDistrito)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Editar", "ActualizarDireccion", new {  id=item.IdDireccion  })<br />
+                        @Html.ActionLink("Detalles", "ConsultarUnaDireccion", new {  id=item.IdDireccion  })<br />
+                        @Html.ActionLink("Eliminar", "EliminarDireccion", new {  id=item.IdDireccion  })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <br />
+    <div class="row">
+        <div class="form-group text-center">
+            <button onclick="location.href='@Url.Action("Administrador","Administrador")'" class="btn btn-default btn-lg rounded-lg"><i class="fa fa-user" aria-hidden="true"> Volver al menú</i></button>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="~/js/DataTables/MantenimientoDataTable.js"></script>
+}

@@ -1,0 +1,40 @@
+﻿@model Marmat.WebApp.Models.CantonViewModel
+
+@{
+    ViewData["Title"] = "Eliminar Canton";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container-fluid">
+    <h1 class="h1">Eliminar Canton</h1>
+
+    <h3 class="h3">¿Está seguro de eliminar esto?</h3>
+    <div>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                ID
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.IdCanton)
+            </dd>
+            <dt class="col-sm-2">
+                Nombre
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.NombreCanton)
+            </dd>
+            <dt class="col-sm-2">
+                Provincia
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.provincia.NombreProvincia)
+            </dd>
+        </dl>
+
+        <form asp-action="EliminarCanton">
+            @Html.HiddenFor(Model=>Model.IdCanton)
+            <input type="submit" value="Eliminar" class="btn btn-danger" />
+            <a asp-action="MantenimientoCanton">VOLVER A LA LISTA</a>
+        </form>
+    </div>
+</div>

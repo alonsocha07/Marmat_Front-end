@@ -1,0 +1,38 @@
+﻿@model Marmat.DML.ReservaViewModel
+
+@{
+    ViewData["Title"] = "Detalles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <h1 class="h1">Detalles</h1>
+
+    <div>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                ID
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.IdReserva)
+            </dd>
+            <dt class="col-sm-2">
+                Fecha
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.FechaReserva)
+            </dd>
+            <dt class="col-sm-2">
+                Área Común
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.IdAreacomun)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        @Html.ActionLink("Editar", "ActualizarReserva", new { id = Model.IdReserva})
+        <a asp-action="MantenimientoReserva">VOLVER A LA LISTA</a>
+    </div>
+</div>

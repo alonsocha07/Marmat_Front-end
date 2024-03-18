@@ -1,0 +1,46 @@
+﻿@model Marmat.WebApp.Models.BoletinViewModel
+
+@{
+    ViewData["Title"] = "Eliminar Boletin";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container-fluid">
+    <h1 class="h1">Eliminar Boletin</h1>
+
+    <h3 class="h3">¿Está seguro de eliminar esto?</h3>
+    <div>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                ID
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.IdBoletin)
+            </dd>
+            <dt class="col-sm-2">
+                Fecha Inicio
+            </dt>
+            <dd class="col-sm-10">
+                @Model.FechaInicio.ToString("MM/dd/yyyy")
+            </dd>
+            <dt class="col-sm-2">
+                Fecha Final
+            </dt>
+            <dd class="col-sm-10">
+                @Model.FechaFinal.ToString("MM/dd/yyyy")
+            </dd>
+            <dt class="col-sm-2">
+                Comentario
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Comentario)
+            </dd>
+        </dl>
+
+        <form asp-action="EliminarBoletin">
+            @Html.HiddenFor(Model=>Model.IdBoletin)
+            <input type="submit" value="Eliminar" class="btn btn-danger" />
+            <a asp-action="MantenimientoBoletin">VOLVER A LA LISTA</a>
+        </form>
+    </div>
+</div>

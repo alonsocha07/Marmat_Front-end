@@ -1,0 +1,47 @@
+﻿@model Marmat.WebApp.Models.TicketViewModel
+
+@{
+    ViewData["Title"] = "Editar Ticket";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container-fluid">
+    <h1 class="h1">Editar Ticket</h1>
+
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="ActualizarTicket">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="IdTicket" class="control-label">ID</label>
+                    <input asp-for="IdTicket" class="form-control" readonly="readonly" />
+                    <span asp-validation-for="IdTicket" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Descripcion" class="control-label">Descripción</label>
+                    <input asp-for="Descripcion" class="form-control" required oninvalid="this.setCustomValidity('La descripción es requerida')" onchange="this.setCustomValidity('')"/>
+                    <span asp-validation-for="Descripcion" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="IdEstado" class="control-label">Estado</label>
+                    @Html.DropDownListFor(model => model.IdEstado, new SelectList(Model.estados, "IdEstado", "NombreEstado"), "--Seleccionar--", new{@class="form-control"})
+                    <span asp-validation-for="IdEstado" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="IdUsuario" class="control-label">Usuario</label>
+                    @Html.DropDownListFor(model => model.IdUsuario, new SelectList(Model.usuarios, "IdUsuario", "NombreUsuario"), "--Seleccionar--", new{@class="form-control"})
+                    <span asp-validation-for="IdUsuario" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="IdDepartamento" class="control-label">Departamento</label>
+                    @Html.DropDownListFor(model => model.IdDepartamento, new SelectList(Model.departamentos, "IdDepartamento", "Descripcion"), "--Seleccionar--", new{@class="form-control"})
+                    <span asp-validation-for="IdDepartamento" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Editar" class="btn btn-primary" />
+                    <a asp-action="MantenimientoTicket">VOLVER A LA LISTA</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

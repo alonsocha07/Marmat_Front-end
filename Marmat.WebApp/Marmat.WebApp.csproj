@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Content\**" />
+    <Content Remove="Content\**" />
+    <EmbeddedResource Remove="Content\**" />
+    <None Remove="Content\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\AreaComun\ActualizarAreaComun.cshtml" />
+    <None Include="Views\AreaComun\ConsultarUnAreaComun.cshtml" />
+    <None Include="Views\AreaComun\EliminarAreaComun.cshtml" />
+    <None Include="Views\AreaComun\MantenimientoAreaComun.cshtml" />
+    <None Include="Views\AreaComun\RegistrarAreaComun.cshtml" />
+    <None Include="Views\Dashboard\Bitacora.cshtml" />
+    <None Include="Views\Dashboard\Condominio.cshtml" />
+    <None Include="Views\Reserva\ActualizarReserva.cshtml" />
+    <None Include="Views\Reserva\ConsultarUnaReserva.cshtml" />
+    <None Include="Views\Reserva\EliminarReserva.cshtml" />
+    <None Include="Views\Reserva\MantenimientoReserva.cshtml" />
+    <None Include="Views\Reserva\RegistrarReserva.cshtml" />
+    <None Include="Views\UsuarioHome\Opciones.cshtml" />
+    <None Include="Views\UsuarioHome\UsuarioHome.cshtml" />
+    <None Include="wwwroot\js\Reportes\ReporteBitacora.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.9" />
+    <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.10" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,55 @@
+﻿@model Marmat.DML.ReservaViewModel
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor Accessor
+
+@{
+    ViewData["Title"] = "Registrar Reserva";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@if (ViewBag.Message != null)
+{
+    <br />
+    <div class="alert alert-danger alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Error!</strong> @ViewBag.Message
+    </div>
+    ViewBag.Mesage = null;
+}
+<div class="container-fluid">
+    <h1 class="h1">Registrar Reserva</h1>
+
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="RegistrarReserva">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="FechaReserva" class="control-label">Fecha</label>
+                    <input type="date" asp-for="FechaReserva" class="form-control" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
+                    <span asp-validation-for="FechaReserva" class="text-danger"></span>
+                </div>
+                <hr />
+                <div class="form-group">
+                    <label asp-for="IdAreacomun" class="control-label">Área Común</label>
+                    @Html.DropDownListFor(model => model.IdAreacomun, new SelectList(Model.areascomunes, "IdAreacomun", "NombreAreacomun"), "--Seleccionar--", new{@class="form-control"})
+                    <span asp-validation-for="IdAreacomun" class="text-danger"></span>
+                </div>
+                <hr />
+                @if (Accessor.HttpContext.Session.GetInt32("Rol") == 1)
+                {
+                    <div class="form-group">
+                        <input type="submit" value="Registrar" class="btn btn-primary" />
+                        <a asp-action="MantenimientoReserva">VOLVER A LA LISTA</a>
+                    </div>
+                }
+                else if (Accessor.HttpContext.Session.GetInt32("Rol") == 2)
+                    {
+                    <div class="form-group">
+                        <input type="submit" value="Registrar" class="btn btn-primary" />
+                        <a asp-action="MantenimientoReservaCliente">VOLVER A LA LISTA</a>
+                    </div>
+                }
+            </form>
+        </div>
+    </div>
+</div>

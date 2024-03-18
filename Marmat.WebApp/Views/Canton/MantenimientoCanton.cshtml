@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Marmat.WebApp.Models.CantonViewModel>
+
+@{
+    ViewData["Title"] = "Mantenimiento Canton";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Styles{
+    <link href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" rel="stylesheet" />
+}
+<div class="container-fluid">
+    <h1 class="h1">Mantenimiento Cantón</h1>
+
+    <p>
+        <a asp-action="RegistrarCanton">Crear nuevo Cantón</a>
+    </p>
+    <table table id="TablaMantenimiento" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>
+                    ID
+                </th>
+                <th>
+                    Nombre
+                </th>
+                <th>
+                    Provincia
+                </th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdCanton)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NombreCanton)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.provincia.NombreProvincia)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Editar", "ActualizarCanton", new {  id=item.IdCanton  })<br />
+                        @Html.ActionLink("Detalles", "ConsultarUnCanton", new {  id=item.IdCanton  })<br />
+                        @Html.ActionLink("Eliminar", "EliminarCanton", new {  id=item.IdCanton  })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <br />
+    <div class="row">
+        <div class="form-group text-center">
+            <button onclick="location.href='@Url.Action("Administrador","Administrador")'" class="btn btn-default btn-lg rounded-lg"><i class="fa fa-user" aria-hidden="true"> Volver al menú</i></button>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="~/js/DataTables/MantenimientoDataTable.js"></script>
+}

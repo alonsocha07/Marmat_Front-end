@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "ReportesMarmat";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid" style="padding-top:50px;padding-bottom:50px;">
+    <h2 class="h2 text-center">Vista Reportes</h2>
+    <h3 class="h3 text-center">Escoja el reporte el cual quiere obtener</h3>
+    <br />
+    <div class="container body-content">
+        <div class="row">
+            <div class="col-md-6">
+                <button class="btn btn-default btn-lg btn-block rounded-lg" style="background-color: #00344c ">@Html.ActionLink("Reporte Usuario", "Usuario", "Dashboard")</button>
+                <br />
+            </div>
+            <div class="col-md-6">
+                <button class="btn btn-default btn-lg btn-block rounded-lg" style="background-color: #00344c ">@Html.ActionLink("Reporte Bitácora", "Bitacora", "Dashboard")</button>
+                <br />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <button class="btn btn-default btn-lg btn-block rounded-lg" style="background-color: #00344c ">@Html.ActionLink("Reporte Condominio", "Condominio", "Dashboard")</button>
+                <br />
+            </div>
+            <div class="col-md-6">
+                <button class="btn btn-default btn-lg btn-block rounded-lg" style="background-color: #00344c ">@Html.ActionLink("Reporte Departamento", "Departamento", "Dashboard")</button>
+                <br />
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+

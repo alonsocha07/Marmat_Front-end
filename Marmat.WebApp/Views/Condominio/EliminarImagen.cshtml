@@ -1,0 +1,40 @@
+﻿@model Marmat.WebApp.Models.CondominioViewModel
+
+<h1 class="h1">Seleccione imagenes a eliminar</h1>
+<div style="margin-top:30px"> 
+<div class="container">
+        <div class="row">
+            
+                <div class="corousel-gallery-content">
+                    <div class="gallery">
+                        
+
+                         <form asp-action="EliminarImagenn"  enctype="multipart/form-data">
+                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            @for (var i = 1; i < ViewBag.CantImg + 1; i++)
+                            {
+
+                                string RutaImgCarousel = Url.Content("~/images/Condominio/Condominio" + ViewBag.IdCondominio + "/Ejemplo" + i + ".png");
+
+                                <div class="item" style="width:-50px">
+                                    <img src="@RutaImgCarousel" alt="corousel-image" style="width:150px;height:120px">
+                                    <input value=@i class="form-check-input" type="checkbox"  name="IList">
+                                     <input asp-for="IdCondominio" hidden="hidden" value=@ViewBag.IdCondominio name="id" />
+                                </div>
+                                 <br />
+                            }
+
+                                <div class="form-group">
+                                  <input type="submit" value="Eliminar" class="btn btn-primary" />
+                  
+                                  </div>
+
+                         </form>
+
+                    </div> <!-- /.gallery-two -->
+                </div> <!-- /.corousel-gallery-content -->
+
+               
+        </div> <!-- /.row -->
+    </div> <!-- /.container -->
+</div>

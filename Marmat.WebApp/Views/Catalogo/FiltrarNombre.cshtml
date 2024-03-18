@@ -1,0 +1,134 @@
+﻿@model IEnumerable<Marmat.WebApp.Models.CatalogoViewModel>
+@{
+    ViewData["Title"] = "Catalogo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<div class="page-header default-template-gradient">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="page-title">Condominios</h2>
+                <p class="page-description">Busca el que mejor se adapte a ti!</p>
+            </div><!-- /.col-md-12 -->
+        </div><!-- /.row-->
+    </div><!-- /.container-fluid -->
+</div><!-- /.page-header -->
+<!-- ====== Apartments Area ======= -->
+<div class="apartments-area four bg-gray-color">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="apartment-tab-area">
+                    <ul role="tablist" class="nav nav-tabs apartment-menu hidden-xs hidden-sm">
+                        <li>
+                            <form asp-controller="Catalogo" asp-action="Catalogo">
+                                <button type="submit" class="btn btn-primary text-center">
+                                    <span class="fa fa-times" aria-hidden="true">Eliminar filtro</span>
+                                </button>
+                                <br />
+                            </form>
+                        </li>
+                    </ul>
+                    <ul role="tablist" class="nav nav-tabs apartment-menu hidden-xs hidden-sm">
+                        <li>
+                            <div class="center">
+                                <form asp-controller="Catalogo" asp-action="FiltrarNombre" class="searchform">
+                                    <div class="input-group" id="adv-search">
+                                        <input type="text" name="buscarstring" class="form-controller" />
+
+                                        <div class="input-group-btn">
+                                            <div class="btn-group" role="group">
+
+                                                <button type="submit" value="Buscar" class="btn btn-primary">
+                                                    <span class="fa fa-search" aria-hidden="true"></span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </li>
+                        <form asp-controller="Catalogo" asp-action="FiltrarProvincia">
+                        <li class="pull-right">
+
+                            <select name="buscarstring" class="form-controller" onchange="this.form.submit()">
+                                <option value="0">Todas las Provincias</option>
+                                <option value="1">San Jose</option>
+                                <option value="2">Alajuela</option>
+                                <option value="3">Heredia</option>
+                                <option value="4">Cartago</option>
+                                <option value="6">Guanacaste</option>
+                                <option value="5">Puntarenas</option>
+                                <option value="7">Limon</option>
+
+                            </select>
+
+                        </li><!-- /.pull-right -->
+                        </form>
+                    </ul>
+
+
+                    <div class="tab-content">
+                        <div role="tabpanel" id="popular-apartment" class="tab-pane fade in active">
+                            <div class="row">
+                                @foreach (var item in Model)
+                                {
+
+                                    string IdImagen = Url.Content("~/images/Condominio/Condominio" + item.IdCondominio.ToString() + "/Ejemplo1.png");
+                                    string RutaEspecifico = Url.Content("~/Catalogo/CondominioEspecifico/" + item.IdCondominio.ToString());
+                                    <div class="col-md-4 col-sm-6 col-xs-6">
+                                        <div class="apartments-content">
+                                            <div class="image-content">
+
+                                                <a href=@RutaEspecifico>
+
+                                                    <img style="width:360px;height:270px" src=@IdImagen>
+                                                </a>
+                                            </div><!-- /.image-content -->
+                                            <div class="text-content">
+                                                <div class="top-content">
+                                                    <h3>
+                                                        @Html.ActionLink(item.NombreCondominio, "CondominioEspecifico", new { id=item.IdCondominio })
+                                                    </h3>
+                                                    <span>
+                                                        <i class="fa fa-map-marker"></i>
+                                                        @Html.DisplayFor(modelItem => item.Direccion  )
+                                                    </span>
+                                                </div><!-- /.top-content -->
+                                            @Html.HiddenFor(modelItem => item.nombre)
+                                                @Html.HiddenFor(modelItem => item.correo)
+
+                                                <div class="bottom-content clearfix">
+                                                    <div class="meta-bed-room">
+                                                        Vacantes @Html.DisplayFor(modelItem => item.Vacantes)
+                                                    </div>
+
+                                                    <span class="clearfix"></span>
+
+                                                </div><!-- /.bottom-content -->
+
+
+
+                                            </div><!-- /.text-content -->
+                                        </div><!-- /.partments-content -->
+                                    </div>
+
+                                    <!-- /.col-md-4 -->
+                                }
+
+                            </div><!-- /.row -->
+
+                        </div><!-- /.popular-apartment -->
+                    </div><!-- /.tab-content -->
+
+
+
+                </div><!-- /.apartment-tab-area -->
+            </div><!-- /.col-md-12 -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</div><!-- /.Apartments-area-->

@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "Opciones";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid" style="padding-top:50px;padding-bottom:50px;">
+    <h2 class="h2 text-center">Opciones de Usuario</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <button type="button" onclick="location.href='@Url.Action("CambioContraseña","Usuario")'" class="btn btn-default btn-lg btn-block rounded-lg"><i class="fa fa-file" aria-hidden="true"> Cambio de Contraseña </i></button>
+        </div>
+        <div class="col-md-6">
+            <button onclick="location.href='@Url.Action("Index","Home")'" class="btn btn-default btn-lg btn-block"><i class="fa fa-info-circle" aria-hidden="true"> Logout</i></button>
+        </div>
+    </div>
+</div>
+
+<div>
+    <button onclick="location.href='@Url.Action("UsuarioHome","UsuarioHome")'" class="btn btn-primary"><i class="fa" aria-hidden="true"> Back</i></button>
+</div>

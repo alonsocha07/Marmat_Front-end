@@ -1,0 +1,32 @@
+﻿@model Marmat.WebApp.Models.RolViewModel
+
+@{
+    ViewData["Title"] = "Editar Rol";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container-fluid">
+    <h1 class="h1">Editar Rol</h1>
+
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="ActualizarRol">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="IdRol" class="control-label">ID</label>
+                    <input asp-for="IdRol" class="form-control" readonly="readonly" />
+                    <span asp-validation-for="IdRol" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NombreRol" class="control-label">Nombre</label>
+                    <input asp-for="NombreRol" class="form-control" required oninvalid="this.setCustomValidity('El nombre es requerido')" onchange="this.setCustomValidity('')" />
+                    <span asp-validation-for="NombreRol" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Editar" class="btn btn-primary" />
+                    <a asp-action="MantenimientoRol">VOLVER A LA LISTA</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

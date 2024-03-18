@@ -1,0 +1,77 @@
+﻿@model IEnumerable<Marmat.WebApp.Models.ReservaClienteViewModel>
+
+@inject IHttpContextAccessor Accessor
+@{
+    ViewData["Title"] = "Reserva de Áreas Comúnes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <h1 class="h1">Reserva de Áreas Comúnes</h1>
+
+    <p>
+        <button onclick="location.href='@Url.Action("RegistrarReserva","Reserva")'" class="btn btn-default btn-lg rounded-lg"><i class="fa fa-file" aria-hidden="true"> Hacer una reserva</i></button>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Id Reserva
+                </th>
+                <th>
+                    Condominio
+                </th>
+                <th>
+                    Area Comun
+                </th>
+                <th>
+                    Usuario
+                </th>
+                <th>
+                    Acciones
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdReserva)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdCondominio)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdAreaComun)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdUsuario)
+                    </td>
+
+                    <td>
+                        @if (Accessor.HttpContext.Session.GetString("NombreUsuario") == item.IdUsuario)
+                        {
+                            @Html.ActionLink("Editar", "ActualizarReserva", new { id=item.IdReserva })
+
+                            <br />
+                            @Html.ActionLink("Detalle", "ConsultarUnaReserva", new { id=item.IdReserva })
+
+                            <br />
+
+                            @Html.ActionLink("Eliminar", "EliminarReserva", new { id=item.IdReserva })
+                        }
+
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+    <br />
+    <div class="row">
+        <div class="form-group text-center">
+            <button onclick="location.href='@Url.Action("UsuarioHome","UsuarioHome")'" class="btn btn-default btn-lg rounded-lg"><i class="fa fa-user" aria-hidden="true"> Volver al menú</i></button>
+        </div>
+    </div>
+</div>

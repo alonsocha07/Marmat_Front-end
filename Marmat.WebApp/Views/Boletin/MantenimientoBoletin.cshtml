@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Marmat.WebApp.Models.BoletinViewModel>
+
+@{
+    ViewData["Title"] = "Mantenimiento Boletín";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Styles{
+    <link href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" rel="stylesheet" />
+}
+<div class="container-fluid">
+    <h1 class="h1">Mantenimiento Boletín</h1>
+
+    <p>
+        <a asp-action="RegistrarBoletin">Crear nuevo Boletín</a>
+    </p>
+    <table table id="TablaMantenimiento" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>
+                    ID
+                </th>
+                <th>
+                    Fecha inicio
+                </th>
+                <th>
+                    Fecha Final
+                </th>
+                <th>
+                    Comentario
+                </th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdBoletin)
+                    </td>
+                    <td>
+                        @item.FechaInicio.ToString("MM/dd/yyyy")
+                    </td>
+                    <td>
+                        @item.FechaFinal.ToString("MM/dd/yyyy")
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Comentario)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Editar", "ActualizarBoletin", new {  id=item.IdBoletin  })<br />
+                        @Html.ActionLink("Detalles", "ConsultarUnBoletin", new {  id=item.IdBoletin  })<br />
+                        @Html.ActionLink("Eliminar", "EliminarBoletin", new {  id=item.IdBoletin  })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <br />
+    <div class="row">
+        <div class="form-group text-center">
+            <button onclick="location.href='@Url.Action("Administrador","Administrador")'" class="btn btn-default btn-lg rounded-lg"><i class="fa fa-user" aria-hidden="true"> Volver al menú</i></button>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="~/js/DataTables/MantenimientoDataTable.js"></script>
+}

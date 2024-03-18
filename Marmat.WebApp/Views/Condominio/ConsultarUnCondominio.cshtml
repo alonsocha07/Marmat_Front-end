@@ -1,0 +1,100 @@
+﻿@model Marmat.WebApp.Models.CondominioViewModel
+
+@{
+    ViewData["Title"] = "Detalles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container-fluid">
+    <h1 class="h1">Detalles</h1>
+
+
+        <br />
+        <p>*Si acaba de eliminar Imagenes por favor presione ctrl + f5 para actualizar las imagenes*</p>
+
+      
+
+    <div>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                ID
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.IdCondominio)
+            </dd>
+            <dt class="col-sm-2">
+                Nombre
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.NombreCondominio)
+            </dd>
+            <dt class="col-sm-2">
+                Vacantes
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Vacantes)
+            </dd>
+            <dt class="col-sm-2">
+                Descripción
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Descripcion)
+            </dd>
+            <dt class="col-sm-2">
+                Link Google Maps
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Imagen)
+            </dd>
+            <dt class="col-sm-2">
+                Dirección
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.direccion.NombreDireccion)
+            </dd>
+        </dl>
+    </div>
+
+
+<div style="margin-top:30px"> 
+<div class="container">
+        <div class="row">
+            
+                <div class="corousel-gallery-content">
+                    <div class="gallery">
+                        <div class="full-view owl-carousel">
+                            @for (var i = 1; i < ViewBag.CantImg + 1; i++)
+                            {
+                                string RutaImgCarousel = Url.Content("~/images/Condominio/Condominio" + Model.IdCondominio + "/Ejemplo" + i + ".png");
+
+                                <a class="item image-pop-up" href=@RutaImgCarousel>
+                                    <img src=@RutaImgCarousel  style="width:400px;height:320px">
+                                </a>
+
+                            }
+                        </div>
+
+                        <div class="list-view owl-carousel">
+                            @for (var i = 1; i < ViewBag.CantImg + 1; i++)
+                            {
+
+                                string RutaImgCarousel = Url.Content("~/images/Condominio/Condominio" + Model.IdCondominio + "/Ejemplo" + i + ".png");
+
+                                <div class="item" style="width:-50px">
+                                    <img src="@RutaImgCarousel" alt="corousel-image" style="width:150px;height:120px">
+                                </div>
+
+                            }
+
+                        </div>
+                    </div> <!-- /.gallery-two -->
+                </div> <!-- /.corousel-gallery-content -->
+             </div>
+        </div>
+
+    <div>  
+
+        @Html.ActionLink("EDITAR", "ActualizarCondominio", new {  id = Model.IdCondominio }) |
+        <a asp-action="MantenimientoCondominio">VOLVER A LA LISTA</a>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+﻿@model Marmat.DML.ReservaViewModel
+
+@{
+    ViewData["Title"] = "Eliminar Reserva";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <h1 class="h1">Eliminar Reserva</h1>
+
+    <h3 class="h3">¿Está seguro de eliminar esto?</h3>
+    <div>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                ID
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.IdReserva)
+            </dd>
+            <dt class="col-sm-2">
+                Fecha
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.FechaReserva)
+            </dd>
+            <dt class="col-sm-2">
+                Área Común
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.IdAreacomun)
+            </dd>
+        </dl>
+
+        <form asp-action="EliminarReserva">
+            @Html.HiddenFor(Model=>Model.IdReserva)
+            <input type="submit" value="Eliminar" class="btn btn-danger" />
+            <a asp-action="MantenimientoReserva">VOLVER A LA LISTA</a>
+        </form>
+    </div>
+</div>

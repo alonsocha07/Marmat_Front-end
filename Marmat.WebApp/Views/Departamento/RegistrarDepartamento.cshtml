@@ -1,0 +1,53 @@
+﻿@model Marmat.WebApp.Models.DepartamentoViewModel
+
+@{
+    ViewData["Title"] = "Registrar Departamento";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container-fluid">
+    <h1 class="h1">Registrar Departamento</h1>
+
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="RegistrarDepartamento">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="form-group">
+                    <label asp-for="CantidadCuartos" class="control-label">Cantidad de Cuartos</label>
+                    <input asp-for="CantidadCuartos" class="form-control" required oninvalid="this.setCustomValidity('La cantidad de cuartos es requerida')" onchange="this.setCustomValidity('')"/>
+                    <span asp-validation-for="CantidadCuartos" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CantidadBanios" class="control-label">Cantidad de Baños</label>
+                    <input asp-for="CantidadBanios" class="form-control" required oninvalid="this.setCustomValidity('La cantidad de baños es requerida')" onchange="this.setCustomValidity('')"/>
+                    <span asp-validation-for="CantidadBanios" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Descripcion" class="control-label">Descripción</label>
+                    <input asp-for="Descripcion" class="form-control" required oninvalid="this.setCustomValidity('La descripción es requerida')" onchange="this.setCustomValidity('')" />
+                    <span asp-validation-for="Descripcion" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Imagen" class="control-label">Imagen</label>
+                    <input asp-for="Imagen" class="form-control" required oninvalid="this.setCustomValidity('La imagen es requerida')" onchange="this.setCustomValidity('')"/>
+                    <span asp-validation-for="Imagen" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="IdUsuario" class="control-label">Usuario</label>
+                    @Html.DropDownListFor(model => model.IdUsuario, new SelectList(Model.usuarios, "IdUsuario", "NombreUsuario"), "--Seleccionar--", new{@class="form-control"})
+                    <span asp-validation-for="IdUsuario" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="IdCondominio" class="control-label">Condominio</label>
+                    @Html.DropDownListFor(model => model.IdCondominio, new SelectList(Model.condominios, "IdCondominio", "NombreCondominio"), "--Seleccionar--", new{@class="form-control"})
+                    <span asp-validation-for="IdCondominio" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Registrar" class="btn btn-primary" />
+                    <a asp-action="MantenimientoDepartamento">VOLVER A LA LISTA</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

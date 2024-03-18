@@ -1,0 +1,46 @@
+﻿@model Marmat.WebApp.Models.BitacoraViewModel
+
+@{
+    ViewData["Title"] = "Eliminar Bitacora";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container-fluid">
+    <h1 class="h1">Eliminar Bitacora</h1>
+
+    <h3 class="h3">¿Está seguro de eliminar esto?</h3>
+    <div>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                ID
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ID_BITACORA)
+            </dd>
+            <dt class="col-sm-2">
+                Descripción
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.DESCRIPCION)
+            </dd>
+            <dt class="col-sm-2">
+                Fecha
+            </dt>
+            <dd class="col-sm-10">
+                @Model.FECHA.ToString("MM/dd/yyyy")
+            </dd>
+            <dt class="col-sm-2">
+                Usuario
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.usuario.NombreUsuario)
+            </dd>
+        </dl>
+
+        <form asp-action="EliminarBitacora">
+            @Html.HiddenFor(Model=>Model.ID_BITACORA)
+            <input type="submit" value="Eliminar" class="btn btn-danger" />
+            <a asp-action="MantenimientoBitacora">VOLVER A LA LISTA</a>
+        </form>
+    </div>
+</div>

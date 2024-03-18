@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Marmat.WebApp.Models.TicketViewModel>
+
+@{
+    ViewData["Title"] = "Mantenimiento Ticket";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Styles{
+    <link href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" rel="stylesheet" />
+}
+<div class="container-fluid">
+    <h1 class="h1">Mantenimiento Ticket</h1>
+
+    <p>
+        <a asp-action="RegistrarTicket">Crear nuevo Ticket</a>
+    </p>
+    <table table id="TablaMantenimiento" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>
+                    ID
+                </th>
+                <th>
+                    Descripción
+                </th>
+                <th>
+                    Estado
+                </th>
+                <th>
+                    Usuario
+                </th>
+                <th>
+                    Departamento
+                </th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdTicket)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Descripcion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.estado.NombreEstado)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.usuario.NombreUsuario)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.departamento.Descripcion)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Editar", "ActualizarTicket", new {  id=item.IdTicket  })<br />
+                        @Html.ActionLink("Detalles", "ConsultarUnTicket", new {  id=item.IdTicket  })<br />
+                        @Html.ActionLink("Eliminar", "EliminarTicket", new {  id=item.IdTicket  })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <br />
+    <div class="row">
+        <div class="form-group text-center">
+            <button onclick="location.href='@Url.Action("Administrador","Administrador")'" class="btn btn-default btn-lg rounded-lg"><i class="fa fa-user" aria-hidden="true"> Volver al menú</i></button>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="~/js/DataTables/MantenimientoDataTable.js"></script>
+}
